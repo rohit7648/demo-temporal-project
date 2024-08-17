@@ -1,0 +1,38 @@
+app:
+  name: feature-store
+  version: 1.0
+server:
+  http:
+    addr: 0.0.0.0:8000
+    timeout: 1s
+  grpc:
+    addr: 0.0.0.0:9000
+    timeout: 1s
+
+log:
+  level: INFO
+
+temporal:
+  baseUrl: localhost:7233
+  retryPolicy:
+    initialInterval: 1s
+    backoffCoefficient: 2.0
+    maximumInterval: 100s
+    maximumAttempts: 5
+  workflow:
+    taskTimeout: 120s
+  activity:
+    startToCloseTimeout: 120s
+  worker:
+    maxConcurrentActivityExecutionSize: 500
+    maxConcurrentLocalActivityExecutionSize: 5
+    workerActivitiesPerSecond: 5000
+    taskQueueActivitiesPerSecond: 5000
+    maxConcurrentWorkflowTaskExecutionSize: 300
+    maxConcurrentActivityTaskPollers: 30
+    maxConcurrentWorkflowTaskPollers: 30
+
+demotemporalproject:
+  baseUrl: http://127.0.0.1:8080
+  userBatchSize: 80000
+
